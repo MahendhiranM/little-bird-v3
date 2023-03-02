@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Dashboard</title>
+	<link rel="stylesheet" th:href="@{/assets/css/bulma.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/all.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+</head>
+
+<body>
+	<section class="section has-background-info pt-3 pb-3">
+		<div class="container">
+			<div class="is-flex is-justify-content-space-between is-align-items-center">
+				<p class="has-text-weight-bold has-text-white">LOGO</p>
+				<a href="/logout">
+					<button class="button is-small is-warning">
+						<strong>Logout</strong>
+					</button>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section pt-3 pb-3">
+		<div class="container">
+			<p class="is-size-5 has-text-weight-bold pt-3 pb-3">
+				Admin dashboard
+			</p>
+		</div>
+	</section>
+
+	<section class="section pt-0 pb-0">
+		<div class="container">
+			<div class="tabs is-boxed">
+				<ul>
+					<li class="is-active">
+						<a class="">
+							<span class="icon is-small"><i class="fas fa-chart-column" aria-hidden="true"></i></span>
+							<span>Season Analysis</span>
+						</a>
+					</li>
+					<li>
+						<a href="route-management.html">
+							<span class="icon is-small"><i class="fas fa-location-arrow" aria-hidden="true"></i></span>
+							<span>Route</span>
+						</a>
+					</li>
+					<li>
+						<a href="department-mangement.html">
+							<span class="icon is-small"><i class="fas fa-building-columns"
+									aria-hidden="true"></i></span>
+							<span>Department</span>
+						</a>
+					</li>
+					<li>
+						<a href="season-management.html">
+							<span class="icon is-small"><i class="fas fa-circle-dot" aria-hidden="true"></i></span>
+							<span>Season</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section pt-5 pb-3">
+		<div class="container is-flex is-justify-content-space-between is-align-items-center">
+			<p class="is-size-5 has-text-weight-bold pt-3 pb-3" th:text="${seasonName}">
+			</p>
+			<div class="dropdown">
+				<div class="dropdown-trigger">
+					<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+						<span>Select Season</span>
+						<span class="icon is-small">
+							<i class="fas fa-angle-down" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+				<div class="dropdown-menu" id="dropdown-menu" role="menu">
+					<div class="dropdown-content">
+						<a th:class="'dropdown-item '+ ${ seasonId==0 ? 'is-active' : ''}" href="/admin/dashboard">
+							Season all
+						</a>
+						<div th:each="season : ${seasons}">
+							<a th:href="'/admin/dashboard?seasonId=' + ${season.id}"
+								th:class="'dropdown-item '+ ${ seasonId==season.id ? 'is-active' : ''}"
+								th:text="${season.name}">
+							</a>
+						</div>
+
+						<hr class="dropdown-divider" />
+						<a href="season-management.html" class="dropdown-item">
+							<span class="icon is-small">
+								<i class="fas fa-gear" aria-hidden="true"></i>
+							</span>
+							Season management
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section pt-3 pb-3">
+		<div class="container">
+			<div class="columns is-2-mobile">
+				<div class="column">
+					<div class="box">
+						<p class="has-text-weight-normal has-text-color-1">
+							<span class="icon is-small">
+								<i class="fas fa-chart-area"></i>
+							</span>
+							Total
+						</p>
+						<div class="is-flex is-align-items-center is-justify-content-space-between">
+							<p class="is-size-1 has-text-weight-bold">
+								<spam th:text="${totalBuspass}" }></spam>
+							</p>
+							<a th:href="'/admin/dashboard/buspass?seasonId=' + ${seasonId}">
+								<span class="icon is-small round-btn">
+									<i class="fas fa-angle-right"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="box">
+						<p class="has-text-weight-normal has-text-color-2">
+							<span class="icon is-small">
+								<i class="fas fa-calendar-day"></i>
+							</span>
+							Today
+						</p>
+						<div class="is-flex is-align-items-center is-justify-content-space-between">
+							<p class="is-size-1 has-text-weight-bold">
+								<spam th:text="${todayBuspass}" }></spam>
+							</p>
+
+							<a href="/student-buspass.html">
+								<span class="icon is-small round-btn">
+									<i class="fas fa-angle-right"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="columns">
+				<div class="column">
+					<div class="box is-flex is-align-items-center is-justify-content-space-between">
+						<p class="has-text-color-3">
+							<span class="icon is-small">
+								<i class="fas fa-map-location-dot"></i>
+							</span>
+							Route
+						</p>
+						<a href="admin-analysis.html">
+							<span class="icon is-small round-btn">
+								<i class="fas fa-angle-right"></i>
+							</span>
+						</a>
+					</div>
+				</div>
+				<div class="column">
+					<div class="box is-flex is-align-items-center is-justify-content-space-between">
+						<p class="has-text-color-4">
+							<span class="icon is-small">
+								<i class="fas fa-building-columns"></i>
+							</span>
+							Department
+						</p>
+						<a href="admin-analysis.html">
+							<span class="icon is-small round-btn">
+								<i class="fas fa-angle-right"></i>
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		var dropdown = document.querySelector(".dropdown");
+		dropdown.addEventListener("click", function (event) {
+			event.stopPropagation();
+			dropdown.classList.toggle("is-active");
+		});
+	</script>
+</body>
+
+</html>

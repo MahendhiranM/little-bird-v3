@@ -1,0 +1,30 @@
+@media only screen and (max-width: 1024px) {
+    .navbar > .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .is-align-items-center {
+        align-items: center !important;
+        justify-content: space-between;
+        display: flex;
+    }
+}
+
+.round-btn {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.has-text-color-1 {
+    color: #a700ff;
+}
+.has-text-color-2 {
+    color: #f25f33;
+}
+.has-text-color-3 {
+    color: #ffbd38;
+}
+.has-text-color-4 {
+    color: #68ee76;
+}
