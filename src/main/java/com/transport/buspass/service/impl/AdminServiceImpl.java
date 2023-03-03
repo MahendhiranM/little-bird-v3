@@ -2,7 +2,9 @@ package com.transport.buspass.service.impl;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.transport.buspass.entity.Department;
 import com.transport.buspass.entity.Season;
 import com.transport.buspass.entity.Student;
 import com.transport.buspass.repository.CollegeRepository;
@@ -49,15 +52,22 @@ public class AdminServiceImpl implements AdminService {
 		List<Student> students = studentRepository.findAll();
 		List<Season> seasons = seasonRepository.findAll();
 		Season season = seasonRepository.findById(seasonId).orElse(null);
+		List<Map<String, Object>> departments = departmentRepository.departmentAndStudents();
+		List<Map<String, Object>> routes = routeRepository.routesNoAndStudents();
 		
-		if (! seasonId.equals(0)) 
+		if (! seasonId.equals(0)) {
 			students = studentRepository.findBySeasonId(seasonId);
+			routes = studentRepository.getRouteCountBySeasonId(seasonId);
+			departments = studentRepository.getDepartmentCountBySeasonId(seasonId);
+		}
 
 		model.addAttribute("todayBuspass", todayBuspass.size());
 		model.addAttribute("seasons", seasons);
 		model.addAttribute("seasonId", seasonId);
 		model.addAttribute("seasonName", (season != null ? season.getName() : "All Season"));
 		model.addAttribute("totalBuspass", students.size());
+		model.addAttribute("routes", routes);
+		model.addAttribute("departments", departments);
 
 		return "dashboard";
 	}
@@ -111,6 +121,64 @@ public class AdminServiceImpl implements AdminService {
 
 		return bookPage;
 	}
+
+	@Override
+	public String getSeasonPage(Model model) {
+		
+		List<Season> seasons = seasonRepository.findAll();
+		model.addAttribute("seasons", seasons);
+		
+		return "season-management";
+	}
+
+	@Override
+	public String createNewSeason(String seasonName) {
+		
+		Season season = new Season();
+		season.setName(seasonName);
+		season.setCreateAt(LocalDate.now());
+		season.setUpdateAt(LocalDate.now());
+		
+		seasonRepository.save(season);
+		
+		return "redirect:/admin/dashboard/season";
+	}
+
+	@Override
+	public String deleteSeason(Integer seasonId) {
+		
+		Season season = seasonRepository.findById(seasonId).orElse(null);
+		
+		if(season != null)
+			seasonRepository.deleteById(seasonId);	
+		
+		return "redirect:/admin/dashboard/season";
+	}
+
+	@Override
+	public String updateSeason(Integer seasonId, String seasonName) {
+		
+		if(seasonId != null && seasonName != null) {
+			Season season = seasonRepository.findById(seasonId).orElse(null);
+			if(season != null) {
+				season.setName(seasonName);
+				season.setUpdateAt(LocalDate.now());
+				seasonRepository.save(season);
+			}
+		}
+
+		return "redirect:/admin/dashboard/season";
+	}
+
+	@Override
+	public String getDepartmentPage(Model model) {
+		
+		List<Department> departments = departmentRepository.findAll();
+		model.addAttribute("departments", departments);
+		
+		return "department-management";
+	}
+
 
 	
 }

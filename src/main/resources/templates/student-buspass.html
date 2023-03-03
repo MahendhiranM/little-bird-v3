@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<section class="section has-background-info pt-4 pb-4">
+	<section class="section bg-color-2 pt-4 pb-4">
 		<div class="container">
 			<div class="is-flex is-justify-content-space-between is-align-items-center">
 				<p class="has-text-white has-text-weight-bold">LOGO</p>
@@ -64,7 +64,7 @@
 						<tr th:if="${students.empty}">
 							<th colspan="6">There is no buspass</th>
 						</tr>
-						<tr th:each="student : ${students}">
+						<tr th:if="${!students.empty}" th:each="student : ${students}">
 							<td th:text="${student.id}"></td>
 							<td th:text="${student.rollNo}"></td>
 							<td th:text="${student.name}"></td>
@@ -87,15 +87,15 @@
 		<div class="container">
 			<nav th:if="${students.totalPages > 0}" class="pagination is-small" role="navigation" aria-label="pagination">
 				<div th:if="${students.hasPrevious()}">
-					<a class="pagination-previous" th:href="@{/admin/dashboard/buspass(size=${students.size}, page=${students.getPageable().getPageNumber})}">Previous</a>
+					<a class="pagination-previous" th:href="@{/admin/dashboard/buspass(seasonId=${seasonId}, size=${students.size}, page=${students.getPageable().getPageNumber})}">Previous</a>
 				</div>
 	
 				<div th:if="${students.hasNext()}">
-					<a class="pagination-next" th:href="@{/admin/dashboard/buspass(size=${students.size}, page=${students.getPageable().getPageNumber + 2})}">Next</a>
+					<a class="pagination-next" th:href="@{/admin/dashboard/buspass(seasonId=${seasonId}, size=${students.size}, page=${students.getPageable().getPageNumber + 2})}">Next</a>
 				</div>
 				<ul class="pagination-list">
 					<li th:each="pageNumber : ${pageNumbers}">
-						<a th:href="@{/admin/dashboard/buspass(size=${students.size}, page=${pageNumber})}"
+						<a th:href="@{/admin/dashboard/buspass(seasonId=${seasonId}, size=${students.size}, page=${pageNumber})}"
 							th:text="${pageNumber}"
 							th:class="'pagination-link '+ ${pageNumber==students.number + 1 ? 'is-current' : ''}"></a>
 					</li>
