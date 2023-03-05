@@ -35,6 +35,7 @@ public class AdminApiController {
 		
 		if(seasonId.equals(0))
 			return routeRepository.routesNoAndStudents();
+		
 		return studentRepository.getRouteCountBySeasonId(seasonId);
 	}
 	

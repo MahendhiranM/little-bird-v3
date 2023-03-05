@@ -1,238 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Route Management</title>
-        <link rel="stylesheet" href="assets/css/bulma.min.css" />
-        <link rel="stylesheet" href="assets/css/all.min.css" />
-        <link rel="stylesheet" href="assets/css/style.css" />
-    </head>
-    <body>
-        <section class="section has-background-info pt-3 pb-3">
-            <div class="container">
-                <div
-                    class="is-flex is-justify-content-space-between is-align-items-center"
-                >
-                    <p class="has-text-weight-bold has-text-white">LOGO</p>
-                    <a href="/logout">
-                        <button class="button is-small is-warning">
-                            <strong>Logout</strong>
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </section>
 
-        <section class="section pt-3 pb-3">
-            <div class="container">
-                <p class="is-size-5 has-text-weight-bold pt-3 pb-3">
-                    Admin dashboard
-                </p>
-            </div>
-        </section>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Route Management</title>
+	<link rel="stylesheet" th:href="@{/assets/css/bulma.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/all.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+	<script th:src="@{/assets/js/script.js}"></script>
+</head>
 
-        <section class="section pt-0 pb-0">
-            <div class="container">
-                <div class="tabs is-boxed">
-                    <ul>
-                        <li>
-                            <a href="dashboard.html">
-                                <span class="icon is-small"
-                                    ><i
-                                        class="fas fa-chart-column"
-                                        aria-hidden="true"
-                                    ></i
-                                ></span>
-                                <span>Season Analysis</span>
-                            </a>
-                        </li>
-                        <li class="is-active">
-                            <a>
-                                <span class="icon is-small"
-                                    ><i
-                                        class="fas fa-location-arrow"
-                                        aria-hidden="true"
-                                    ></i
-                                ></span>
-                                <span>Route</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="department-mangement.html">
-                                <span class="icon is-small"
-                                    ><i
-                                        class="fas fa-building-columns"
-                                        aria-hidden="true"
-                                    ></i
-                                ></span>
-                                <span>Department</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="season-management.html">
-                                <span class="icon is-small"
-                                    ><i
-                                        class="fas fa-circle-dot"
-                                        aria-hidden="true"
-                                    ></i
-                                ></span>
-                                <span>Season</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+<body>
 
-        <section class="section pt-3 pb-3">
-            <div
-                class="container is-flex is-justify-content-space-between is-align-items-center"
-            >
-                <p class="is-size-5 has-text-weight-semibold pt-3 pb-3">
-                    Route Management
-                </p>
-                <button class="button is-small is-success">
-                    <span class="icon is-small">
-                        <i class="fas fa-add"></i>
-                    </span>
-                    <span>Create route</span>
-                </button>
-            </div>
-        </section>
 
-        <section class="section pt-3 pb-3">
-            <div class="container">
-                <div class="table-container">
-                    <table class="table is-fullwidth">
-                        <thead>
-                            <tr>
-                                <th>S.No.</th>
-                                <th>Route No.</th>
-                                <th>Route Name</th>
-                                <th>Date</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>15</td>
-                                <td>Salem</td>
-                                <td>23/04/2023</td>
-                                <td>
-                                    <button
-                                        data-target="modal-js-example"
-                                        class="button js-modal-trigger is-small has-text-weight-bold is-warning"
-                                    >
-                                        update
-                                    </button>
-                                </td>
-                                <td>
-                                    <button
-                                        data-target="modal-js-example"
-                                        class="button is-small has-text-weight-bold is-danger js-modal-trigger"
-                                    >
-                                        delete
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-        <div id="delete-modal" class="modal">
-            <div class="modal-background"></div>
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">Confirmation</p>
-                    <button class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i
-                                class="fas fa-window-close"
-                                aria-hidden="true"
-                            ></i>
-                        </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content pr-6">Are you sure to delete?</div>
-                </div>
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item"
-                        ><button class="button is-warning is-fullwidth">
-                            Cancel
-                        </button>
-                    </a>
-                    <a href="#" class="card-footer-item"
-                        ><button class="button is-danger is-fullwidth">
-                            Delete
-                        </button></a
-                    >
-                </footer>
-            </div>
-        </div>
-        <div id="create-route-modal" class="modal">
-            <div class="modal-background"></div>
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">Create season</p>
-                    <button class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i
-                                class="fas fa-window-close"
-                                aria-hidden="true"
-                            ></i>
-                        </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        <form action="#">
-                            <div class="field">
-                                <label class="label">Route No.</label>
-                                <div class="control">
-                                    <input
-                                        class="input"
-                                        type="text"
-                                        placeholder="Bus route no."
-                                        name="routeNo"
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Route Name</label>
-                                <div class="control">
-                                    <input
-                                        class="input"
-                                        type="text"
-                                        placeholder="Last stop"
-                                        name="routename"
-                                        required
-                                    />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item"
-                        ><button class="button is-warning is-fullwidth">
-                            Cancel
-                        </button>
-                    </a>
-                    <a href="#" class="card-footer-item"
-                        ><button class="button is-danger is-fullwidth">
-                            Create
-                        </button></a
-                    >
-                </footer>
-            </div>
-        </div>
-        <script></script>
-    </body>
+	<div th:replace="fragments/loading.html :: loading"></div>
+
+	<div th:replace="fragments/admin.html :: dashboard_header"></div>
+
+
+	<section class="section p-0" id="dashboard-cover">
+		<section class="section pt-3 pb-3">
+			<div class="container">
+				<p class="is-size-5 has-text-weight-bold pt-3 pb-3">
+					Admin dashboard
+				</p>
+			</div>
+		</section>
+
+		<section class="section pt-0 pb-0">
+			<div class="container">
+				<div class="tabs is-boxed">
+					<ul>
+						<li>
+							<a href="/admin/dashboard">
+								<span class="icon is-small"><i class="fas fa-chart-column"
+										aria-hidden="true"></i></span>
+								<span>Season Analysis</span>
+							</a>
+						</li>
+						<li class="is-active">
+							<a>
+								<span class="icon is-small"><i class="fas fa-location-arrow"
+										aria-hidden="true"></i></span>
+								<span>Route</span>
+							</a>
+						</li>
+						<li>
+							<a href="/admin/dashboard/department">
+								<span class="icon is-small"><i class="fas fa-building-columns"
+										aria-hidden="true"></i></span>
+								<span>Department</span>
+							</a>
+						</li>
+						<li>
+							<a href="/admin/dashboard/season">
+								<span class="icon is-small"><i class="fas fa-circle-dot" aria-hidden="true"></i></span>
+								<span>Season</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</section>
+
+	<section class="section pt-3 pb-3">
+		<div class="container is-flex is-justify-content-space-between is-align-items-center">
+			<p class="is-size-5 has-text-weight-semibold pt-3 pb-3">
+				Route Management
+			</p>
+			<button id="create-route-btn" class="button is-small is-success">
+				<span class="icon is-small">
+					<i class="fas fa-add"></i>
+				</span>
+				<span>Create route</span>
+			</button>
+		</div>
+	</section>
+
+	<section class="section pt-3 pb-3">
+		<div class="container">
+			<div class="table-container">
+				<table class="table is-fullwidth">
+					<thead>
+						<tr>
+							<th>S.No.</th>
+							<th>Route No.</th>
+							<th>Route Name</th>
+							<th>Date</th>
+							<th>Update</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${!routes.isEmpty}" th:each="route : ${routes}">
+							<td th:attr="data-source-route-id=${route.id}" class="route-id" th:text="${route.id}"></td>
+							<td th:attr="data-source-route-no=${route.routeNo}" class="route-no"
+								th:text="${route.routeNo}"></td>
+							<td th:attr="data-source-route-name=${route.name}" class="route-name"
+								th:text="${route.name}"></td>
+							<td th:text="${route.createAt}"></td>
+							<td>
+								<button class="button is-small has-text-weight-bold is-warning update-btn">
+									update
+								</button>
+							</td>
+							<td>
+								<a th:href="'/admin/dashboard/route/delete?routeId=' + ${route.id}"
+									class="button is-small has-text-weight-bold is-danger">
+									delete
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<!--<div id="delete-modal" class="modal">
+		<div class="modal-background"></div>
+		<div class="card">
+			<header class="card-header">
+				<p class="card-header-title">Confirmation</p>
+				<button class="card-header-icon" aria-label="more options">
+					<span class="icon">
+						<i class="fas fa-window-close" aria-hidden="true"></i>
+					</span>
+				</button>
+			</header>
+			<div class="card-content">
+				<div class="content pr-6">Are you sure to delete?</div>
+			</div>
+			<footer class="card-footer">
+				<a href="#" class="card-footer-item"><button class="button is-warning is-fullwidth">
+						Cancel
+					</button>
+				</a>
+				<a href="#" class="card-footer-item"><button class="button is-danger is-fullwidth">
+						Delete
+					</button></a>
+			</footer>
+		</div>
+	</div>-->
+
+	<div class="modal" id="create-route-modal">
+		<div class="modal-background"></div>
+		<div class="card">
+			<header class="card-header">
+				<p class="card-header-title">Create route</p>
+				<button class="card-header-icon" id="create-close-btn" aria-label="more options">
+					<span class="icon ">
+						<i class="fas fa-circle-xmark" aria-hidden="true"></i>
+					</span>
+				</button>
+			</header>
+			<div class="card-content">
+				<div class="content">
+					<form action="/admin/dashboard/route/create" method="POST">
+						<div class="field">
+							<label class="label">Route no</label>
+							<div class="control">
+								<input id="create-route-no" class="input" type="text" placeholder="Route no"
+									name="routeNo" required />
+							</div>
+						</div>
+						<div class="field">
+							<label class="label">Route name</label>
+							<div class="control">
+								<input id="create-route-name" class="input" type="text" placeholder="Route Name"
+									name="routeName" required />
+							</div>
+						</div>
+						<div class="field">
+							<button type="submit" id="create-ok-btn" class="button is-danger is-fullwidth">
+								Create
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="update-route-modal">
+		<div class="modal-background"></div>
+		<div class="card">
+			<header class="card-header">
+				<p class="card-header-title">Update route name</p>
+				<button class="card-header-icon" id="update-close-btn" aria-label="more options">
+					<span class="icon ">
+						<i class="fas fa-circle-xmark" aria-hidden="true"></i>
+					</span>
+				</button>
+			</header>
+			<div class="card-content">
+				<div class="content">
+					<form action="/admin/dashboard/route/update" method="POST">
+						<input id="update-route-id" class="input" type="hidden" name="routeId" />
+						<div class="field">
+							<label class="label">Route no</label>
+							<div class="control">
+								<input id="update-route-no" class="input" type="text" name="routeNo" />
+							</div>
+						</div>
+						<div class="field">
+							<label class="label">Route name</label>
+							<div class="control">
+								<input id="update-route-name" class="input" type="text" name="routeName" />
+							</div>
+							<p class="help" id="update-error">Minimum 5 character</p>
+						</div>
+						<div class="field">
+							<button type="submit" id="update-ok-btn" class="button is-danger is-fullwidth">
+								Update
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const createRouteBtn = document.querySelector("#create-route-btn");
+		const createCloseBtn = document.querySelector("#create-close-btn");
+		const createOkBtn = document.querySelector("#create-ok-btn");
+		const createRouteModal = document.querySelector("#create-route-modal");
+		const createRouteName = document.querySelector("#create-route-name");
+
+		createRouteBtn.addEventListener("click", e => {
+			createRouteModal.classList.toggle("is-active")
+		})
+
+		createCloseBtn.addEventListener("click", e => {
+			createRouteModal.classList.toggle("is-active")
+		})
+
+		createOkBtn.addEventListener("click", e => {
+			if (createRouteName.value.length >= 5)
+				createRouteModal.classList.toggle("is-active")
+			else
+				e.preventDefault()
+		})
+
+		const updateRouteModal = document.querySelector("#update-route-modal");
+		const updateCloseBtn = document.querySelector("#update-close-btn");
+		const updateOkBtn = document.querySelector("#update-ok-btn");
+		const updateRouteId = document.querySelector("#update-route-id");
+		const updateRouteNo = document.querySelector("#update-route-no");
+		const updateRouteName = document.querySelector("#update-route-name");
+		const updateErrorText = document.querySelector("#update-error");
+		const table = document.querySelector(".table");
+
+		table.addEventListener("click", e => {
+			if (e.target.classList.contains("update-btn")) {
+				const routeId = e.target.closest('tr').querySelector('.route-id');
+				const routeNo = e.target.closest('tr').querySelector('.route-no');
+				const routeName = e.target.closest('tr').querySelector('.route-name');
+				const routeIdValue = routeId.dataset.sourceRouteId;
+				const routeNoValue = routeNo.dataset.sourceRouteNo;
+				const routeNameValue = routeName.dataset.sourceRouteName;
+				updateRouteId.value = routeIdValue;
+				updateRouteNo.value = routeNoValue;
+				updateRouteName.value = routeNameValue;
+				updateRouteModal.classList.toggle("is-active")
+			}
+		})
+
+		updateCloseBtn.addEventListener("click", e => {
+			updateRouteModal.classList.toggle("is-active")
+		})
+
+		updateOkBtn.addEventListener("click", e => {
+			if (updateRouteName.value.length >= 5) {
+				updateRoutenModal.classList.toggle("is-active")
+			} else {
+				e.preventDefault()
+				updateErrorText.classList.add("is-danger")
+				updateRouteName.style.border = "1px solid red";
+			}
+		})
+
+
+
+	</script>
+	<script th:inline="javascript">
+		window.addEventListener('load', function () {
+			document.getElementById('loading').style.display = 'none';
+		});
+	</script>
+
+</body>
+
 </html>

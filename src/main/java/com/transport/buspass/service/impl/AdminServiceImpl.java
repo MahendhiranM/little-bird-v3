@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.transport.buspass.entity.Department;
+import com.transport.buspass.entity.Route;
 import com.transport.buspass.entity.Season;
 import com.transport.buspass.entity.Student;
 import com.transport.buspass.repository.CollegeRepository;
@@ -35,9 +36,6 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private DepartmentRepository departmentRepository;
-
-	@Autowired
-	private CollegeRepository collegeRepository;
 
 	@Autowired
 	private RouteRepository routeRepository;
@@ -95,6 +93,17 @@ public class AdminServiceImpl implements AdminService {
 		}
 
 		return "student-buspass";
+	}
+	
+	@Override
+	public String deleteStudent(Long studentId) {
+
+		Student student = studentRepository.findById(studentId).orElse(null);
+
+		if (student != null)
+			studentRepository.deleteById(studentId);
+		
+		return "redirect:/admin/dashboard/buspass";
 	}
 
 	public Page<Student> findPaginated(Integer seasonId, Pageable pageable) {
@@ -179,6 +188,95 @@ public class AdminServiceImpl implements AdminService {
 		return "department-management";
 	}
 
+	@Override
+	public String createNewDepartment(String departmentName) {
+		
+		Department department = new Department();
+		department.setName(departmentName);
+		department.setCreateAt(LocalDate.now());
+		department.setUpdateAt(LocalDate.now());
+		
+		departmentRepository.save(department);
+		
+		return "redirect:/admin/dashboard/department";
+	}
 
+	@Override
+	public String deleteDepartment(Integer departmentId) {
+		
+		Department department = departmentRepository.findById(departmentId).orElse(null);
+
+		if (department != null)
+			departmentRepository.deleteById(departmentId);
+
+		return "redirect:/admin/dashboard/department";
+	}
+
+	@Override
+	public String updateDepartment(Integer departmentId, String departmentName) {
+		
+		if(departmentId != null && departmentName != null) {
+			Department department = departmentRepository.findById(departmentId).orElse(null);
+			if(department != null) {
+				department.setName(departmentName);
+				department.setUpdateAt(LocalDate.now());
+				departmentRepository.save(department);
+			}
+		}
+		
+		return "redirect:/admin/dashboard/department";
+	}
+
+	@Override
+	public String getRoutePage(Model model) {
+
+		List<Route> routes = routeRepository.findAll();
+		model.addAttribute("routes", routes);
+		
+		return "route-management";
+	}
+
+	@Override
+	public String createNewRoute(Integer routeNo, String routeName) {
+		
+		Route route = new Route();
+		route.setRouteNo(routeNo);
+		route.setName(routeName);
+		route.setCreateAt(LocalDate.now());
+		route.setUpdateAt(LocalDate.now());
+		
+		routeRepository.save(route);
+		
+		return "redirect:/admin/dashboard/route";
+	}
+
+	@Override
+	public String deleteRoute(Integer routeId) {
+		
+		Route route = routeRepository.findById(routeId).orElse(null);
+
+		if (route != null)
+			routeRepository.deleteById(routeId);
+		
+		return "redirect:/admin/dashboard/route";
+	}
+
+	@Override
+	public String updateRoute(Integer routeId, Integer routeNo, String routeName) {
+		
+		if(routeId != null && routeNo != null && routeName != null) {
+			Route route = routeRepository.findById(routeId).orElse(null);
+			if(route != null) {
+				route.setRouteNo(routeNo);
+				route.setName(routeName);
+				route.setUpdateAt(LocalDate.now());
+				routeRepository.save(route);
+			}
+		}
+		
+		return "redirect:/admin/dashboard/route";
+	}
+
+	
 	
 }

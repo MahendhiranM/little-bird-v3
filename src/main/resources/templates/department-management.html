@@ -9,21 +9,14 @@
 	<link rel="stylesheet" th:href="@{/assets/css/bulma.min.css}" />
 	<link rel="stylesheet" th:href="@{/assets/css/all.min.css}" />
 	<link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+	<script th:src="@{/assets/js/script.js}"></script> 
 </head>
 
 <body>
-	<section class="section bg-color-2 pt-3 pb-3">
-		<div class="container">
-			<div class="is-flex is-justify-content-space-between is-align-items-center">
-				<p class="has-text-weight-bold has-text-white">LOGO</p>
-				<a href="/logout">
-					<button class="button is-small is-warning">
-						<strong>Logout</strong>
-					</button>
-				</a>
-			</div>
-		</div>
-	</section>
+	
+	<div th:replace="fragments/loading.html :: loading"></div>
+  		
+  	<div th:replace="fragments/admin.html :: dashboard_header"></div>
 
 	<section class="section p-0" id="dashboard-cover">
 		<section class="section pt-3 pb-3">
@@ -46,7 +39,7 @@
 							</a>
 						</li>
 						<li>
-							<a>
+							<a href="/admin/dashboard/route">
 								<span class="icon is-small"><i class="fas fa-location-arrow"
 										aria-hidden="true"></i></span>
 								<span>Route</span>
@@ -70,7 +63,7 @@
 			</div>
 		</section>
 	</section>
-	
+
 	<section class="section pt-3 pb-3">
 		<div class="container is-flex is-justify-content-space-between is-align-items-center">
 			<p class="is-size-5 has-text-weight-semibold pt-3 pb-3">
@@ -84,7 +77,7 @@
 			</button>
 		</div>
 	</section>
-	
+
 	<section class="section pt-3 pb-3">
 		<div class="container">
 			<div class="table-container">
@@ -111,7 +104,7 @@
 								</button>
 							</td>
 							<td>
-								<a th:href="'/admin/dashboard/department/delete?seasonId=' + ${department.id}"
+								<a th:href="'/admin/dashboard/department/delete?departmentId=' + ${department.id}"
 									class="button is-small has-text-weight-bold is-danger">
 									delete
 								</a>
@@ -122,7 +115,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<div class="modal" id="create-department-modal">
 		<div class="modal-background"></div>
 		<div class="card">
@@ -138,9 +131,10 @@
 				<div class="content">
 					<form action="/admin/dashboard/department/create" method="POST">
 						<div class="field">
-							<label class="label">Season name</label>
+							<label class="label">Department name</label>
 							<div class="control">
-								<input id="create-department-name" class="input" type="text" placeholder="Department Name" name="seasonName" required />
+								<input id="create-department-name" class="input" type="text"
+									placeholder="Department Name" name="departmentName" required />
 							</div>
 						</div>
 						<div class="field">
@@ -154,7 +148,7 @@
 		</div>
 	</div>
 
-	<div class="modal" id="update-season-modal">
+	<div class="modal" id="update-department-modal">
 		<div class="modal-background"></div>
 		<div class="card">
 			<header class="card-header">
@@ -168,12 +162,7 @@
 			<div class="card-content">
 				<div class="content">
 					<form action="/admin/dashboard/department/update" method="POST">
-						<div class="field">
-							<label class="label">Department id</label>
-							<div class="control">
-								<input id="update-department-id" class="hidden" type="text" name="departmentId" />
-							</div>
-						</div>
+						<input id="update-department-id" class="input" type="hidden" name="departmentId" />	
 						<div class="field">
 							<label class="label">Department name</label>
 							<div class="control">
@@ -191,61 +180,66 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
-		const createSeasonBtn = document.querySelector("#create-department-btn");
+		const createDepartmentBtn = document.querySelector("#create-department-btn");
 		const createCloseBtn = document.querySelector("#create-close-btn");
 		const createOkBtn = document.querySelector("#create-ok-btn");
-		const createSeasonModel = document.querySelector("#create-department-modal");
-		const createSeasonName = document.querySelector("#create-season-name");
+		const createDepartmentModel = document.querySelector("#create-department-modal");
+		const createDepartmentName = document.querySelector("#create-department-name");
 
-		createSeasonBtn.addEventListener("click", e => {
-			createSeasonModel.classList.toggle("is-active")
+		createDepartmentBtn.addEventListener("click", e => {
+			
+			createDepartmentModel.classList.toggle("is-active")
 		})
 
 		createCloseBtn.addEventListener("click", e => {
-			createSeasonModel.classList.toggle("is-active")
+			
+			createDepartmentModel.classList.toggle("is-active")
 		})
 
 		createOkBtn.addEventListener("click", e => {
-			if (createSeasonName.value.length >= 5)
-				createSeasonModel.classList.toggle("is-active")
+			
+			if (createDepartmentName.value.length >= 2)
+				createDepartmentModel.classList.toggle("is-active")
 			else
 				e.preventDefault()
 		})
 
-		const updateSeasonModel = document.querySelector("#update-season-modal");
+		const updateDepartmentModel = document.querySelector("#update-department-modal");
 		const updateCloseBtn = document.querySelector("#update-close-btn");
 		const updateOkBtn = document.querySelector("#update-ok-btn");
-		const updateSeasonId = document.querySelector("#update-season-id");
-		const updateSeasonName = document.querySelector("#update-season-name");
+		const updateDepartmentId = document.querySelector("#update-department-id");
+		const updateDepartmentName = document.querySelector("#update-department-name");
 		const updateErrorText = document.querySelector("#update-error");
 		const table = document.querySelector(".table");
 
 		table.addEventListener("click", e => {
+			
 			if (e.target.classList.contains("update-btn")) {
-				const seasonId = e.target.closest('tr').querySelector('.season-id');
-				const seasonName = e.target.closest('tr').querySelector('.season-name');
-				const seasonIdValue = seasonId.dataset.sourceSeasonId;
-				const seasonNameValue = seasonName.dataset.sourceSeasonName;
-				updateSeasonId.value = seasonIdValue;
-				updateSeasonName.value = seasonNameValue;
-				console.log(seasonIdValue, seasonNameValue)
-				updateSeasonModel.classList.toggle("is-active")
+				
+				const departmentId = e.target.closest('tr').querySelector('.department-id');
+				const departmentName = e.target.closest('tr').querySelector('.department-name');
+				const departmentIdValue = departmentId.dataset.sourceDepartmentId;
+				const departmentNameValue = departmentName.dataset.sourceDepartmentName;
+				updateDepartmentId.value = departmentIdValue;
+				updateDepartmentName.value = departmentNameValue;
+				console.log(departmentIdValue, departmentNameValue);
+				updateDepartmentModel.classList.toggle("is-active");
 			}
 		})
 
 		updateCloseBtn.addEventListener("click", e => {
-			updateSeasonModel.classList.toggle("is-active")
+			updateDepartmentModel.classList.toggle("is-active")
 		})
 
 		updateOkBtn.addEventListener("click", e => {
-			if (updateSeasonName.value.length >= 5) {
-				updateSeasonModel.classList.toggle("is-active")
+			if (updateDepartmentName.value.length >= 2) {
+				updateDepartmentModel.classList.toggle("is-active")
 			} else {
 				e.preventDefault()
 				updateErrorText.classList.add("is-danger")
-				updateSeasonName.style.border = "1px solid red";
+				updateDepartmentName.style.border = "1px solid red";
 			}
 		})
 	</script>

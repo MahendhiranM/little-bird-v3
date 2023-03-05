@@ -25,4 +25,20 @@ public interface AdminService {
 
 	String getDepartmentPage(Model model);
 
+	String createNewDepartment(String departmentName);
+
+	String deleteDepartment(Integer departmentId);
+
+	String updateDepartment(Integer departmentId, String departmentName);
+
+	String getRoutePage(Model model);
+
+	String createNewRoute(Integer routeNo, String routeName);
+
+	String deleteRoute(Integer routeId);
+
+	String updateRoute(Integer routeId, Integer routeNo, String routeName);
+
+	String deleteStudent(Long studentId);
+
 }

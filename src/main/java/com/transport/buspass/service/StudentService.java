@@ -4,13 +4,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import com.transport.buspass.dto.StudentDto;
-import com.transport.buspass.entity.Student;
 
-import jakarta.validation.Valid;
+import net.sf.jasperreports.engine.JRException;
+
 
 public interface StudentService {
 
-	String saveStudent(StudentDto studentDto, BindingResult result, Model model);
+	String saveStudent(StudentDto studentDto, BindingResult result, Model model) throws JRException;
 
 	String getFormPage(Model model);
 	
