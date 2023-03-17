@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+    	<link rel="stylesheet" th:href="@{/assets/css/bulma.min.css}" />   
+    	<link rel="stylesheet" th:href="@{/assets/css/all.min.css}" /> 
+		<link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+		<script th:src="@{/assets/js/script.js}"></script>   
+    </head>
+    <body>
+  		
+   	
+        <div
+            class="hero is-light is-fullheight is-justify-content-center is-align-items-center m-3"
+        >
+            <div class="card p-3" style="width: 400px">
+				<header class="card-header">
+					<p class="card-header-title">Admin Login</p>
+					<div th:if="${param.error}">
+						<div class="alert alert-danger">Invalid Email and Password.</div>
+					</div>
+					<div th:if="${param.logout}">
+						<div class="alert alert-success">You have been logged out.</div>
+					</div>
+                </header>
+                <div class="card-content">
+                    <form  method="post"
+                           th:action="@{/login}"
+                           role="form">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input
+                                    class="input"
+                                    type="email"
+                                    placeholder="Email"
+                                    name="username"
+                                />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input
+                                    class="input"
+                                    type="password"
+                                    placeholder="Password"
+                                    name="password"
+                                />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control">
+                                <a href="admin-dashboard.html">
+                                    <button
+                                        class="button is-success is-fullwidth"
+                                    >
+                                        Login
+                                    </button>
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

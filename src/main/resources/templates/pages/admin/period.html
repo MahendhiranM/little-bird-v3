@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Period </title>
+    <link rel="stylesheet" href="../../assets/css/bulma.min.css" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/all.min.css" />
+</head>
+
+<body>
+    <section class="section has-background-success p-0">
+        <div class="container">
+            <nav class="navbar has-background-success" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="https://bulma.io">
+                        <img src="../../assets/images/logo.png" />
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"> </span>
+                        <span aria-hidden="true"> </span>
+                        <span aria-hidden="true"> </span>
+                    </a>
+                </div>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="dashboard.html"> Dashboard </a>
+                        <a class="navbar-item" href="route.html"> Route </a>
+                        <a class="navbar-item" href="department.html"> Department </a>
+                        <a class="navbar-item is-active"> Period </a>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-warning">
+                                <strong> Log out </strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <section class="section pt-3 pb-3">
+        <div class="container">
+            <p class="is-size-5 has-text-weight-bold pt-3 pb-3">
+                Period Management
+            </p>
+        </div>
+    </section>
+
+    <section class="section pt-3 pb-3">
+        <div class="container">
+            <button class="button is-small has-text-weight-bold is-success">
+                <span class="icon is-small ">
+                    <i class="fas fa-add"></i>
+                </span>
+                <span>Create period</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="section pt-3 pb-3">
+        <div class="container">
+            <div class="table-container">
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Period Name</th>
+                            <th>Create Date</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>MCA</td>
+                            <td>23/04/2023</td>
+                            <td>
+                                <button class="button is-small has-text-weight-bold is-warning">
+                                    update
+                                </button>
+                            </td>
+                            <td>
+                                <button class="button is-small has-text-weight-bold is-danger">
+                                    delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

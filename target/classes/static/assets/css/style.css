@@ -1,0 +1,33 @@
+#hero-section {
+    height: 80vh;
+}
+
+.hero-img {
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.526),
+            rgba(0, 0, 0, 0.063)
+        ),
+        url(../images/hero.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-title,
+.hero-sub-title {
+    font-weight: bold;
+    color: #fff;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 4rem;
+}
+
+.hero-sub-title {
+    font-size: 2rem;
+    font-weight: lighter;
+}

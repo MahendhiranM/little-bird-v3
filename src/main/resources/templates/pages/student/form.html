@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Student Buspass Form</title>
+	<link rel="stylesheet" href="../../assets/css/bulma.min.css" />
+</head>
+
+<body>
+
+	<section class="section pt-2 pb-2">
+		<div class="container">
+			<nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li class="is-active">
+						<a href="#" aria-current="page">Form</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+
+	<section class="section has-background-primary">
+		<div class="container">
+			<p class="title has-text-white has-text-weight-bold">
+				Buspass Form
+			</p>
+			<p class="subtitle is-size-6 has-text-white">
+				Fill the form with carefully
+			</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<form method="post" action="#" th:action="@{/form}" th:object="${student}">
+				<div class="field">
+					<label class="label">Roll No.</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Student Roll No." name="rollNo"
+							th:field="*{rollNo}" />
+					</div>
+					<p th:errors="*{rollNo}" class="help is-danger" th:if="${#fields.hasErrors('rollNo')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Register No.</label>
+					<div class="control">
+						<input class="input" type="number" placeholder="Student Register No." name="registerNo"
+							th:field="*{registerNo}" />
+					</div>
+					<p th:errors="*{registerNo}" class="help is-danger" th:if="${#fields.hasErrors('registerNo')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Name</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Enter your name" name="name" th:field="*{name}" />
+					</div>
+					<p th:errors="*{name}" class="help is-danger" th:if="${#fields.hasErrors('name')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Father Name</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Enter your father's name" name="fatherName"
+							th:field="*{fatherName}" />
+					</div>
+					<p th:errors="*{fatherName}" class="help is-danger" th:if="${#fields.hasErrors('fatherName')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">College</label>
+					<div class="control">
+						<div class="select is-fullwidth is-normal">
+							<select name="collegeId" th:field="*{collegeId}">
+								<option value="0">
+									Select college
+								</option>
+								<div th:each="college : ${colleges}">
+									<option th:value="${college.id}">
+										<p th:text="${college.name}"></p>
+									</option>
+								</div>
+							</select>
+						</div>
+					</div>
+					<p th:errors="*{collegeId}" class="help is-danger" th:if="${#fields.hasErrors('collegeId')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Department</label>
+					<div class="control">
+						<div class="select is-fullwidth is-normal">
+							<select name="departmentId" th:field="*{departmentId}">
+								<option value="0">
+									Select department
+								</option>
+								<div th:each="department : ${departments}">
+									<option th:value="${department.id}">
+										<p th:text="${department.name}"></p>
+									</option>
+								</div>
+							</select>
+						</div>
+					</div>
+					<p th:errors="*{departmentId}" class="help is-danger" th:if="${#fields.hasErrors('departmentId')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Semester</label>
+					<div class="control">
+						<div class="select is-fullwidth is-normal">
+							<select name="semester" th:field="*{semester}">
+								<option value="0">
+									Select current semester
+								</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+					</div>
+					<p th:errors="*{semester}" class="help is-danger" th:if="${#fields.hasErrors('semester')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Address</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Door no./ Street/ landmark" name="address"
+							th:field="*{address}" />
+					</div>
+					<p th:errors="*{address}" class="help is-danger" th:if="${#fields.hasErrors('address')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">District</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Salem/ Namakkal/ Karur" name="district"
+							th:field="*{district}" />
+					</div>
+					<p th:errors="*{district}" class="help is-danger" th:if="${#fields.hasErrors('district')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Pincode</label>
+					<div class="control">
+						<input class="input" type="number" placeholder="Eg. 636111" name="pincode"
+							th:field="*{pincode}" />
+					</div>
+					<p th:errors="*{pincode}" class="help is-danger" th:if="${#fields.hasErrors('pincode')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Phone No.</label>
+					<div class="control">
+						<input class="input" type="number" placeholder="Eg. 9876543210" name="phoneNo"
+							th:field="*{phoneNo}" />
+					</div>
+					<p th:errors="*{phoneNo}" class="help is-danger" th:if="${#fields.hasErrors('phoneNo')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Email</label>
+					<div class="control">
+						<input class="input" type="email" placeholder="Eg. mahendhiran2506@gmail.com" name="email"
+							th:field="*{email}" />
+					</div>
+					<p th:errors="*{email}" class="help is-danger" th:if="${#fields.hasErrors('email')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Route No.</label>
+					<div class="control">
+						<div class="select is-fullwidth is-normal">
+							<select name="routeId" th:field="*{routeId}">
+								<option value="0">
+									Select route
+								</option>
+								<div th:each="route : ${routes}">
+									<option th:value="${route.id}">
+										<p th:text="${route.routeNo}"></p>
+									</option>
+								</div>
+							</select>
+						</div>
+					</div>
+					<p th:errors="*{routeId}" class="help is-danger" th:if="${#fields.hasErrors('routeId')}">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label">Boarding Point</label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Your bus stop" name="boardingPoint"
+							th:field="*{boardingPoint}" />
+					</div>
+					<p th:errors="*{boardingPoint}" class="help is-danger"
+						th:if="${#fields.hasErrors('boardingPoint')}">
+					</p>
+				</div>
+				<div class="field">
+					<button type="submit" class="button is-primary is-fullwidth">
+						Submit
+					</button>
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
+
+</html>

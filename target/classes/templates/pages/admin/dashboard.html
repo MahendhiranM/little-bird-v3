@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Dashboard</title>
+    <link rel="stylesheet" href="../../assets/css/bulma.min.css" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/all.min.css" />
+</head>
+
+<body>
+    <section class="section has-background-success p-0">
+        <div class="container">
+            <nav class="navbar has-background-success" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="https://bulma.io">
+                        <img src="../../assets/images/logo.png" />
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"> </span>
+                        <span aria-hidden="true"> </span>
+                        <span aria-hidden="true"> </span>
+                    </a>
+                </div>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item is-active"> Dashboard </a>
+                        <a class="navbar-item" href="route.html"> Route </a>
+                        <a class="navbar-item" href="dashboard.html"> Department </a>
+                        <a class="navbar-item" href="period.html"> Period </a>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-warning">
+                                <strong> Log out </strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <section class="section has-background-success-light pt-3 pb-3">
+        <div class="container">
+            <p class="is-size-5 has-text-weight-bold pt-3 pb-3">
+                Dashboard
+            </p>
+        </div>
+    </section>
+
+    <section class="section bg-color-1 pt-3 pb-3">
+        <div class="container is-flex is-justify-content-space-between is-align-items-center">
+            <p class="is-size-5 has-text-weight-bold pt-3 pb-3">2021-ODD</p>
+            <div class="dropdown">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                        <span>Select period</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                        <a class="dropdown-item"> 2021-ODD </a>
+                        <a class="dropdown-item"> 2021-EVEN </a>
+                        <a class="dropdown-item"> 2022-ODD </a>
+                        <a class="dropdown-item"> 2022-EVEN </a>
+
+                        <hr class="dropdown-divider" />
+                        <a href="season-management.html" class="dropdown-item">
+                            <span class="icon is-small">
+                                <i class="fas fa-gear" aria-hidden="true"></i>
+                            </span>
+                            Period management
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-color-1 pt-3 pb-3">
+        <div class="container">
+            <div class="columns is-2-mobile">
+                <div class="column">
+                    <div class="box">
+                        <p class="has-text-grey-dark has-text-weight-medium">
+                            <span class="icon is-small mr-2">
+                                <i class="fas fa-map-marker"></i> </span>Total buspasses
+                        </p>
+
+                        <div class="is-flex is-justify-content-space-between is-align-items-center">
+                            <p class="is-size-1 has-text-weight-semibold">
+                                <spam th:text="${totalBuspass}"></spam>
+                                2,435
+                            </p>
+                            <a href="./buspass.html" class="button is-small has-text-weight-bold">
+                                view
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <p class="has-text-grey-dark has-text-weight-medium">
+                            <span class="icon is-small mr-2">
+                                <i class="fas fa-map-marker"></i> </span>New buspasses / today
+                        </p>
+
+                        <div class="is-flex is-align-items-center is-justify-content-space-between">
+                            <p class="is-size-1 has-text-weight-semibold">
+                                <spam th:text="${totalBuspass}"></spam>
+                                35
+                            </p>
+                            <a href="#" class="button is-small has-text-weight-bold">
+                                view
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <p class="has-text-grey-dark has-text-weight-medium">
+                            <span class="icon is-small mr-2">
+                                <i class="fas fa-map-marker"></i>
+                            </span>
+                            Duplicated buspass
+                        </p>
+
+                        <div class="is-flex is-align-items-center is-justify-content-space-between">
+                            <p class="is-size-1 has-text-weight-semibold">
+                                <spam th:text="${totalBuspass}"></spam>
+                                86
+                            </p>
+                            <a href="#" class="button is-small has-text-weight-bold">
+                                view
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-2-mobile">
+                <div class="column">
+                    <div class="box">
+                        <p class="has-text-grey-dark has-text-weight-medium">
+                            <span class="icon is-small mr-2">
+                                <i class="fas fa-map-marker"></i> </span>
+                            Verified buspass
+                        </p>
+
+                        <div class="is-flex is-justify-content-space-between is-align-items-center">
+                            <p class="is-size-1 has-text-weight-semibold">
+                                <spam th:text="${totalBuspass}"></spam>
+                                435
+                            </p>
+                            <a href="#" class="button is-small has-text-weight-bold">
+                                view
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <p class="has-text-grey-dark has-text-weight-medium">
+                            <span class="icon is-small mr-2">
+                                <i class="fas fa-map-marker"></i> </span>Unverified buspass
+                        </p>
+
+                        <div class="is-flex is-align-items-center is-justify-content-space-between">
+                            <p class="is-size-1 has-text-weight-semibold">
+                                <spam th:text="${totalBuspass}"></spam>
+                                60
+                            </p>
+                            <a href="#" class="button is-small has-text-weight-bold">
+                                view
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="box">
+                        <div class="level">
+                            <p class="level-left has-text-weight-medium">
+                                <span class="icon is-small mr-2">
+                                    <i class="fas fa-chart-pie"></i>
+                                </span>
+                                Route analysis
+                            </p>
+                            <p class="level-right">
+                                <a href="./route-analysis.html" class="button is-small has-text-weight-bold">
+                                    view
+                                </a>
+                            </p>
+                        </div>
+                        <canvas id="route-bar-chart"></canvas>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <div class="level">
+                            <p class="level-left has-text-weight-medium">
+                                <span class="icon is-small mr-2">
+                                    <i class="fas fa-chart-pie"></i>
+                                </span>
+                                Department analysis
+                            </p>
+                            <p class="level-right">
+                                <a href="./department-analysis.html" class="button is-small has-text-weight-bold">
+                                    view
+                                </a>
+                            </p>
+                        </div>
+                        <canvas id="department-bar-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../../assets/js/chart.js"></script>
+
+    <script src="../../assets/js/dashboard-barchart.js"></script>
+</body>
+
+</html>
