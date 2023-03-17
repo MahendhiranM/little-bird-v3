@@ -49,7 +49,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private EmailService emailService;
 
-	Logger logger = LoggerFactory.getLogger(StudentContoller.class);
+	Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
 
 	public String defaultFormData(Model model) {
 
@@ -118,16 +118,18 @@ public class StudentServiceImpl implements StudentService {
 
 		Student savedStudent = studentRepository.save(student);
 		model.addAttribute("email", savedStudent.getEmail());
-		logger.info("Email send");
-		sendVerifivationEmail(savedStudent.getEmail(), savedStudent.getVerificationCode());
 
+		try {			
+			emailService.sendEmail(savedStudent.getEmail(), "Little-Bird", savedStudent.getVerificationCode());
+			logger.info("Email send");
+		} catch (Exception e) {
+			logger.error("No internet connection. hint: connect the internet.");
+			return "pages/student/form-error";
+		}
+		
 		return "pages/student/form-submitted";
 	}
 
-	private void sendVerifivationEmail(String email, String verificationCode) {
-		
-		emailService.sendEmail(email, "Little-Bird", verificationCode);
-	}
 
 	private String generateVerificationCode() {
 
@@ -137,6 +139,9 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public String verify(Long id, String verificationCode, Model model) {
+		
+		if(id == null || verificationCode == null)
+			return "pages/student/verify-error";
 		
 		Student student = studentRepository.findById(id).orElse(null);
 		

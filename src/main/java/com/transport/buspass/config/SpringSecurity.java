@@ -31,15 +31,15 @@ public class SpringSecurity {
                         authorize.requestMatchers("/", "/about", "/form", "/verify", "/assets/**").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/register/**").permitAll()
-//                        .requestMatchers("/admin/**").permitAll()
-//                        .requestMatchers("/api/admin/**").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/api/admin/**").permitAll()
+//                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+//                        .requestMatchers("/admin/**").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/admin/dashboard")
+                                .defaultSuccessUrl("/admin/dashboard/")
                                 .permitAll()
                 ).logout(
                         logout -> logout

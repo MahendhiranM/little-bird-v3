@@ -32,14 +32,18 @@ public class StudentContoller {
 	}
 
 	@PostMapping("/form")
-	public String saveStudent(@Valid @ModelAttribute("student") StudentDto studentDto, BindingResult result,
+	public String saveStudent(
+			@Valid @ModelAttribute("student") StudentDto studentDto, 
+			BindingResult result,
 			Model model) {
 
 		return studentService.saveStudent(studentDto, result, model);
 	}
 
 	@GetMapping("/verify")
-	public String verify(@RequestParam("id") Long id, @RequestParam("verificationCode") String verificationCode,
+	public String verify(
+			@RequestParam(name = "id", required = false) Long id, 
+			@RequestParam(name = "verificationCode", required = false) String verificationCode,
 			Model model) {
 
 		return studentService.verify(id, verificationCode, model);

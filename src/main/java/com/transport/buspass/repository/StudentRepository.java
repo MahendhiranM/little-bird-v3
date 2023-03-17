@@ -15,9 +15,11 @@ import com.transport.buspass.entity.Student;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
 //	List<Student> findByCreateAt(LocalDate createAt);
-//	
-//	List<Student> findBySeasonId(Integer id);
-//	
+
+	List<Student> findByPeriodId(Integer periodId);
+	
+	List<Student> findByPeriodIdAndCreateAt(Integer periodId, LocalDate date);
+	
 //	@Query(value = "SELECT s.route_id, COUNT(s.id) as count FROM student s GROUP BY s.route_id", nativeQuery = true)
 //	List<Map<String, Object>> countByRouteId();
 //	
@@ -33,4 +35,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 //			+ "GROUP BY r.id;\n"
 //			+ "", nativeQuery = true)
 //	List<Map<String, Object>> getDepartmentCountBySeasonId(@Param("seasonId") Integer seasonI);
+	
+	
 }

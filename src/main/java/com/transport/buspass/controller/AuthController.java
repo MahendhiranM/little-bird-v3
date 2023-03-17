@@ -26,11 +26,13 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginForm() {
-        return "login";
+    	
+    	return "pages/admin/login";
     }
     
     @GetMapping("/error")
     public String errorpage() {
+    	
         return "error";
     }
 
@@ -38,7 +40,7 @@ public class AuthController {
     public String showRegistrationForm(Model model){
         UserDto user = new UserDto();
         model.addAttribute("user", user);
-        return "register";
+        return "pages/admin/register";
     }
 
     @PostMapping("/register/save")
